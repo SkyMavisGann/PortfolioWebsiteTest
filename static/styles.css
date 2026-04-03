@@ -1,0 +1,365 @@
+/* =========================================
+   1. FONTS & VARIABLES
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+  font-family: 'RainyHearts'; /* Choose a name for your font */
+  src: url('fonts/rainyhearts.ttf') format('truetype'); /* Define the path and format */
+  font-weight: normal; /* Optional: define weight/style if needed */
+  font-style: normal; /* Optional: define weight/style if needed */
+}
+@font-face {
+  font-family: 'Nokia'; /* Choose a name for your font */
+  src: url('fonts/nokiafc22.ttf') format('truetype'); /* Define the path and format */
+  font-weight: normal; /* Optional: define weight/style if needed */
+  font-style: normal; /* Optional: define weight/style if needed */
+}
+
+
+:root {
+    /* Placeholders - Swap these out for your industrial color palette! */
+    --bg-color: #464646;
+    --card-bg: rgb(0, 0, 0);
+    --text-color: #cbbcbc;
+    --primary-accent: rgb(213, 169, 111);
+    --btn-hover-fill: hsl(44, 49%, 53%);
+}
+
+/* =========================================
+   2. RESET & BASE
+========================================= */
+* {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box; 
+    
+    
+}
+head {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Nokia', sans-serif;
+    background-color: transparent;
+    color: var(--text-color);
+    overflow-x: hidden; /* Prevents animations from causing horizontal scrollbars */
+    position: relative; /* This is the most important part! It anchors absolute children. */
+    min-height: 100vh;  /* Ensures the body is always at least the height of the screen */
+    padding-bottom: 200px; /* Gives space at the bottom so your gears don't overlap your content */
+    padding-top: 150px; /* Gives space at the top above the nav */
+    overflow-x: hidden; /* CRITICAL: Prevents horizontal scrolling when your gears hang off the edge (-100px) */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout specific styles to organize the new elements */
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background-color: #2c3e50; /* Industrial dark placeholder */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-family: 'RainyHearts', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary-accent);
+}
+
+.top-gear-container {
+    position: absolute;
+    top: 0;
+    right: 20px; /* Anchored to top-left */
+    width: 100%;
+    height: 150px;
+    z-index: 1000;
+}
+
+/* 3. The Bottom Gear Container */
+.bottom-gear-container {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 150px; 
+    height: 150px;
+    z-index: 1000;
+}
+
+/* =========================================
+   3. TYPOGRAPHY
+========================================= */
+h1 {
+    font-size: 5rem;
+}
+h1, h2, h3, h4, h5, h6, button {
+    font-family: "RainyHearts", sans-serif;
+}
+
+#main-title {
+    color: var(--primary-accent);
+    text-align: center;
+    margin: 2rem 0;
+}
+
+/* =========================================
+   4. LAYOUT & COMPONENTS
+========================================= */
+.card {
+    background-image: url('billboardMini.png');
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 30px;
+    border: none;
+    border-radius: 0px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 12px rgba(197, 197, 197, 0.1);
+}
+
+.product-card {
+    background-image: url('billboardMiniFull.png');
+    background-size: auto 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.product-card:hover {
+    cursor: pointer;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Buttons --- */
+button {
+    font-size: 2rem;
+    display: block; 
+    margin: 15px auto; 
+    padding: 15px 10px; 
+    background-color: var(--primary-accent); 
+    border: none; 
+    width: 200px;
+    height: 100px;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 0 var(--btn-hover-fill);
+    transition: all 0.3s ease-out;
+    outline: none;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: inset 200px 0 0 0 var(--btn-hover-fill);
+}
+
+/* --- Images --- */
+img {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0px 12px rgba(0,0,0,0.1);
+    transition: all 500ms ease-in-out;
+}
+
+img:hover {
+    
+    transform: scale(1.05); /* Adjusted from 1000px translation */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+.projects-grid {
+    /* Keep your existing grid setup */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    /* --- THE FIX --- */
+    position: relative;
+    z-index: 1;
+    
+    /* Lock the card height so the repeating background matches the math perfectly */
+    grid-auto-rows: 350px; 
+}
+
+/* The Full-Width Repeating Pipes */
+.projects-grid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    
+    /* Break out of the 1200px max-width and center on the screen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw; 
+    
+    /* 100% height ensures it grows exactly as tall as the grid does when you add more games */
+    height: 100%; 
+    
+    background-image: url('../static/GateNoWorry.png'); /* Swap for your pipe image */
+    background-repeat: repeat-y; /* Tiles downward for each row */
+    
+    /* MAGIC MATH: Sets the tile height to exactly match your card height + the gap between them */
+    background-size: auto calc(350px + 2rem); 
+    background-position: top center;
+    
+    image-rendering: pixelated;
+    z-index: -1; /* Pushes the pipes behind the project cards */
+}
+.projects-grid img {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    height: auto;
+    border-radius: 3px;
+    box-shadow: 0 0px 12px rgba(0,0,0,0.1);
+    transition: all 500ms ease-in-out;
+}
+
+/* --- Utilities --- */
+#loading-indicator { display: none; }
+#loading-indicator.active { display: flex; }
+
+.line-clamp-2 {
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* =========================================
+   5. STEAMPUNK ANIMATIONS
+========================================= */
+
+/* --- Method 1: Single Sprite Continuous Rotation --- */
+/* Add this class to an <img> tag of a single gear */
+.gear-rotate-cw {
+    animation: spin-clockwise 10s linear infinite;
+}
+
+.gear-rotate-ccw {
+    animation: spin-counterclockwise 10s linear infinite;
+}
+
+@keyframes spin-clockwise {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-counterclockwise {
+    100% { transform: rotate(-360deg); }
+}
+
+/* --- Method 2: Spritesheet Animation --- */
+/* Add this class to an empty <div> tag */
+.gear-spritesheet {
+    width: 43px;  /* Width of exactly ONE frame */
+    height: 43px; /* Height of exactly ONE frame */
+    background: url('CogWheels-Gears/SpriteSheets/SilverGearWheels/Gear3Silver_spritesheet.png') left center;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    /* Example: A 1-second animation loop over 8 frames. 
+       Adjust steps() to the number of frames in your sheet */
+    animation: play-sprite 1s steps(4) infinite; 
+}
+
+@keyframes play-sprite {
+    /* Shift the background the exact total width of the spritesheet */
+    100% { background-position: -172px; } 
+}
+
+/* 1. The overall width/height of the scrollbar */
+::-webkit-scrollbar {
+    width: 24px; /* Make it wide enough to fit your sprite */
+}
+
+/* 2. The Track (The background path the slider moves along) */
+::-webkit-scrollbar-track {
+    background-color: #35302d; /* Fallback dark metal color */
+    /* You could use a repeating pipe texture here! */
+    /* background-image: url('../images/pipe-texture.png'); */
+    border-left: 2px solid #111; /* Gives it an inset, mechanical depth */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+/* 3. The Thumb (The actual draggable piece) */
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-accent); /* Fallback color */
+    background-image: url('GearShaftWithGear.png'); /* YOUR SPRITE GOES HERE */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 1px; 
+    
+    /* Adding a heavy shadow makes it look like a physical object */
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.5); 
+}
+
+/* 4. The Thumb on Hover (When you grab it) */
+::-webkit-scrollbar-thumb:hover {
+    cursor: grab;
+    /* You could even swap to a different sprite here for a "lit up" state */
+    /* background-image: url('path/to/your/slider-sprite-active.png'); */
+    filter: brightness(1.2); /* Quick way to make it look active */
+}
+
+/* 5. The Thumb when Clicking/Dragging */
+::-webkit-scrollbar-thumb:active {
+    cursor: grabbing;
+    filter: brightness(0.9);
+}
+
+/* 1. The Window into your background */
+.parallax-container {
+    position: fixed; /* Locks to the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -10; /* Pushes it strictly behind ALL your website content */
+    overflow: hidden; /* Hides the extra 20% buffer we are about to add */
+    background-color: #1a1a1a; /* Base color in case an image doesn't load */
+}
+
+/* 2. The Individual Layers */
+.parallax-layer {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 150vh; /* Gives you a massive 50% screen height buffer! */
+    
+    image-rendering: pixelated; 
+    image-rendering: crisp-edges;
+    
+    /* Using Method B because it scales pixel art tilesets best */
+    background-size: auto 100%; 
+    background-repeat: repeat-x;
+    
+    /* Anchors the image to the top so it seamlessly scrolls upward */
+    background-position: top center; 
+    
+    will-change: transform; 
+}
+
